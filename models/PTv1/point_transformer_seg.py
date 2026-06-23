@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import einops
-from models.PointTransformer.libs.pointops.functions import pointops
+from pointops.functions import pointops
 import os
 
 

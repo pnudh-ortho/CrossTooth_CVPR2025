@@ -22,14 +22,14 @@ class ToothData(Dataset):
 
     def __getitem__(self, item):
         mesh = vedo.load(item)
-        cell_normals = np.array(mesh.normals(cells=True))
-        point_coords = np.array(mesh.points())
-        face_info = np.array(mesh.cells())
+        cell_normals = np.array(mesh.cell_normals)
+        point_coords = np.array(mesh.points)
+        face_info = np.array(mesh.cells)
         cell_coords = np.array([[
             (point_coords[point_idxs[0]][0] + point_coords[point_idxs[1]][0] + point_coords[point_idxs[2]][0]) / 3,
             (point_coords[point_idxs[0]][1] + point_coords[point_idxs[1]][1] + point_coords[point_idxs[2]][1]) / 3,
             (point_coords[point_idxs[0]][2] + point_coords[point_idxs[1]][2] + point_coords[point_idxs[2]][2]) / 3,
-        ] for point_idxs in mesh.cells()])
+        ] for point_idxs in mesh.cells])
 
         pointcloud = np.concatenate((cell_coords, cell_normals), axis=1)
 
